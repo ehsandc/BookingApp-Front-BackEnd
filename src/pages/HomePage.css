@@ -1,0 +1,57 @@
+.home-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 120px 20px 20px 20px; /* Added top padding for fixed header */
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.home-header h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.home-header p {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 40px;
+  border-radius: 8px;
+}
+
+.loading {
+  background-color: #f0f8ff;
+  color: #0066cc;
+}
+
+.error {
+  background-color: #ffe6e6;
+  color: #cc0000;
+}
+
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+}
+
+.no-results h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
