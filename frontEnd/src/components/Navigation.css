@@ -133,10 +133,11 @@
 /* Mobile styles (480px and below) */
 @media (max-width: 480px) {
   .nav-dropdown-menu {
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) !important;
-    min-width: 180px !important;
+    right: 0 !important;
+    left: auto !important;
+    transform: none !important;
+    min-width: 160px !important;
+    max-width: calc(100vw - 20px) !important;
     text-align: left !important;
     align-items: flex-start !important;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;

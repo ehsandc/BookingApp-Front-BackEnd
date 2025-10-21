@@ -80,11 +80,27 @@
 @media (max-width: 600px) {
   .footer-content {
     flex-direction: column;
-    gap: 16px;
-    padding: 0 10px;
+    gap: 20px;
+    padding: 0 16px;
   }
   .footer-links-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1.2rem;
+    gap: 1.5rem 1rem;
+    text-align: left;
+  }
+  .footer-topic {
+    text-align: left;
+    gap: 0.6rem;
+  }
+  .footer-topic-title {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  .footer-topic a {
+    font-size: 0.9rem;
+  }
+  .footer-social {
+    gap: 2rem;
+    font-size: 1.6rem;
   }
 }
