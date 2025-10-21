@@ -1,65 +1,23 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "backEnd/src/index.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "frontEnd/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/users(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/hosts(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/properties(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/bookings(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/reviews(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/login(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/auth(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/admin(.*)",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/health",
-      "dest": "backEnd/src/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontEnd/build/$1"
-    }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": "frontEnd/build",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api" },
+    { "source": "/users/(.*)", "destination": "/api" },
+    { "source": "/users", "destination": "/api" },
+    { "source": "/hosts/(.*)", "destination": "/api" },
+    { "source": "/hosts", "destination": "/api" },
+    { "source": "/properties/(.*)", "destination": "/api" },
+    { "source": "/properties", "destination": "/api" },
+    { "source": "/bookings/(.*)", "destination": "/api" },
+    { "source": "/bookings", "destination": "/api" },
+    { "source": "/reviews/(.*)", "destination": "/api" },
+    { "source": "/reviews", "destination": "/api" },
+    { "source": "/login", "destination": "/api" },
+    { "source": "/auth/(.*)", "destination": "/api" },
+    { "source": "/auth", "destination": "/api" },
+    { "source": "/admin/(.*)", "destination": "/api" },
+    { "source": "/health", "destination": "/api" }
+  ]
 }
