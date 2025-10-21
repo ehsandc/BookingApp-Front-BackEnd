@@ -17,6 +17,7 @@ import bookingsRouter from "./routes/bookings.js";
 import reviewsRouter from "./routes/reviews.js";
 import loginRouter from "./routes/login.js";
 import authRouter from "./routes/auth.js";
+import adminRouter from "./routes/admin.js";
 
 // Get __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -115,6 +116,7 @@ app.use("/bookings", bookingsRouter);
 app.use("/reviews", reviewsRouter);
 app.use("/login", loginRouter);
 app.use("/auth", authRouter);
+app.use("/admin", adminRouter);
 
 // Health check
 app.get("/health", (req, res) => {
