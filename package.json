@@ -4,9 +4,10 @@
   "description": "Full-stack booking application with React frontend and Node.js backend",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:backend && npm run build:frontend",
+    "build": "npm run build:backend && npm run build:frontend && npm run copy:build",
     "build:backend": "cd backEnd && npm install && npm run build:safe",
     "build:frontend": "cd frontEnd && npm install && npm run build",
+    "copy:build": "cp -r frontEnd/build ./build",
     "start": "npm run start:backend",
     "start:backend": "cd backEnd && npm start",
     "start:frontend": "cd frontEnd && npm start",
