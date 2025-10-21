@@ -8,6 +8,7 @@
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "build": "npx prisma generate && npx prisma db push",
+    "build:safe": "npx prisma generate",
     "postinstall": "npx prisma generate",
     "migrate": "npx prisma migrate deploy",
     "test": "vitest"
