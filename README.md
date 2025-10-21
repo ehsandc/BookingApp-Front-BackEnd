@@ -125,3 +125,4 @@ REACT_APP_API_URL=http://localhost:3000 (local) or https://your-api.onrender.com
 ## License
 
 This project is licensed under the ISC License.
+# Deployment trigger - Tue Oct 21 15:12:46 CEST 2025
