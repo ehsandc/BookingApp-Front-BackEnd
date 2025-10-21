@@ -6,10 +6,12 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js",
-    "build": "npx prisma generate && npx prisma db push && npm run seed",
+    "start": "npm run migrate:deploy && npm run seed:safe && node src/index.js",
+    "build": "npx prisma generate && npx prisma db push",
     "build:safe": "npx prisma generate",
     "seed": "node prisma/seed.js",
+    "seed:safe": "npm run seed || echo 'Seeding failed, but continuing...'",
+    "migrate:deploy": "npx prisma migrate deploy || npx prisma db push || echo 'Migration failed, but continuing...'",
     "postinstall": "npx prisma generate",
     "migrate": "npx prisma migrate deploy",
     "test": "vitest"
