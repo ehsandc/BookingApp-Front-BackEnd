@@ -1,0 +1,48 @@
+# Root .gitignore for BookingApp-localy monorepo
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+.env
+.env.*
+dist/
+build/
+coverage/
+
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Prisma
+backEnd/prisma/dev.db
+backEnd/prisma/dev.db-journal
+
+# Postman
+backEnd/postman/collections/#*
+
+# React build
+frontEnd/build/
+
+# VSCode
+.vscode/
+
+# Misc
+*.local
+*.sublime-workspace
+*.sublime-project
+
+# Ignore backup files
+*~
+*.swp
+*.bak
+
+# Ignore test coverage
+coverage/
+
+# Ignore frontend and backend node_modules (redundant, but explicit)
+frontEnd/node_modules/
+backEnd/node_modules/
