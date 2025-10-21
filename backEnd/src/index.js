@@ -5,6 +5,8 @@ import rateLimit from "express-rate-limit";
 import cookieParser from "cookie-parser";
 import * as Sentry from "@sentry/node";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import { requestLogger, logger } from "./middleware/logger.js";
 import { errorHandler, notFoundHandler } from "./middleware/errorHandler.js";
 import { specs, swaggerUi } from "./config/swagger.js";
@@ -15,6 +17,10 @@ import bookingsRouter from "./routes/bookings.js";
 import reviewsRouter from "./routes/reviews.js";
 import loginRouter from "./routes/login.js";
 import authRouter from "./routes/auth.js";
+
+// Get __dirname equivalent for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config();
 
@@ -31,8 +37,19 @@ const app = express();
 // Security middleware
 app.use(
   helmet({
-    contentSecurityPolicy:
-      process.env.NODE_ENV === "production" ? undefined : false,
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'"],
+        imgSrc: ["'self'", "data:", "https:"],
+        connectSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        objectSrc: ["'none'"],
+        mediaSrc: ["'self'"],
+        frameSrc: ["'none'"],
+      },
+    },
     crossOriginEmbedderPolicy: false,
   })
 );
@@ -63,7 +80,7 @@ app.use("/login", authLimiter);
 const corsOptions = {
   origin:
     process.env.NODE_ENV === "production"
-      ? process.env.FRONTEND_URL || "https://your-frontend-domain.render.com"
+      ? [process.env.FRONTEND_URL, "https://bookingapp-front-backend.onrender.com"]
       : ["http://localhost:3000", "http://localhost:3001"],
   credentials: true,
   optionsSuccessStatus: 200,
@@ -109,6 +126,33 @@ app.get("/health", (req, res) => {
     environment: process.env.NODE_ENV || "development",
   });
 });
+
+// Serve React static files in production
+if (process.env.NODE_ENV === "production") {
+  // Calculate path to frontend build directory
+  const frontendBuildPath = path.join(__dirname, "../../frontEnd/build");
+  
+  // Serve static files
+  app.use(express.static(frontendBuildPath));
+  
+  // Handle React Router - send all non-API requests to index.html
+  app.get("*", (req, res) => {
+    // Don't serve index.html for API routes
+    if (req.path.startsWith("/api") || 
+        req.path.startsWith("/users") || 
+        req.path.startsWith("/hosts") || 
+        req.path.startsWith("/properties") || 
+        req.path.startsWith("/bookings") || 
+        req.path.startsWith("/reviews") || 
+        req.path.startsWith("/login") || 
+        req.path.startsWith("/auth") ||
+        req.path.startsWith("/health")) {
+      return res.status(404).json({ error: "API endpoint not found" });
+    }
+    
+    res.sendFile(path.join(frontendBuildPath, "index.html"));
+  });
+}
 
 // 404 handler
 app.use(notFoundHandler);
