@@ -1,0 +1,65 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backEnd/src/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "frontEnd/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/users(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/hosts(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/properties(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/bookings(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/reviews(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/login(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/auth(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/admin(.*)",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/health",
+      "dest": "backEnd/src/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "frontEnd/build/$1"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
+}
