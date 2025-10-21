@@ -1,0 +1,41 @@
+{
+  "name": "booking-app-monorepo",
+  "version": "1.0.0",
+  "description": "Full-stack booking application with React frontend and Node.js backend",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:backend": "cd backEnd && npm install && npm run build",
+    "build:frontend": "cd frontEnd && npm install && npm run build",
+    "start": "npm run start:backend",
+    "start:backend": "cd backEnd && npm start",
+    "start:frontend": "cd frontEnd && npm start",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backEnd && npm run dev",
+    "dev:frontend": "cd frontEnd && npm start",
+    "install:all": "npm install && cd backEnd && npm install && cd ../frontEnd && npm install",
+    "test": "cd backEnd && npm test && cd ../frontEnd && npm test",
+    "heroku-postbuild": "npm run build"
+  },
+  "keywords": [
+    "booking",
+    "react",
+    "nodejs",
+    "express",
+    "prisma",
+    "postgresql"
+  ],
+  "author": "BookingApp Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ehsandc/BookingApp-Front-BackEnd.git"
+  }
+}
