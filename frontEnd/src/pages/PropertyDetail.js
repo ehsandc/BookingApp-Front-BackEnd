@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../components/LoadingSpinner";
-import API_BASE_URL from "../config/api";
+// import API_BASE_URL from "../config/api";
+import { mockProperties } from "../data/mockProperties";
 import "./PropertyDetail.css";
 
 const PropertyDetail = () => {
@@ -10,22 +11,11 @@ const PropertyDetail = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchProperty();
-  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const fetchProperty = async () => {
-    try {
-      const response = await fetch(`${API_BASE_URL}/properties/${id}`);
-      if (!response.ok) {
-        throw new Error("Property not found");
-      }
-      const property = await response.json();
-      setProperty(property);
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-    }
-  };
+    // Use mock data for frontend-only deployment
+    const foundProperty = mockProperties.find((p) => p.id === id);
+    setProperty(foundProperty || null);
+    setLoading(false);
+  }, [id]);
 
   if (loading)
     return (
