@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "outputDirectory": "frontEnd/build",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api" },
     { "source": "/users/(.*)", "destination": "/api" },
