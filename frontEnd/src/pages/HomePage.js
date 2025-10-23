@@ -22,8 +22,11 @@ const HomePage = () => {
 
   useEffect(() => {
     // Use mock data for frontend-only deployment
-    setProperties(mockProperties);
-    setFilteredProperties(mockProperties);
+    console.log("Mock properties loaded:", mockProperties);
+    if (mockProperties && mockProperties.length > 0) {
+      setProperties(mockProperties);
+      setFilteredProperties(mockProperties);
+    }
     setLoading(false);
   }, []);
 
