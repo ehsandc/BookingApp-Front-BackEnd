@@ -8,7 +8,6 @@
     "build:backend": "cd backEnd && npm install && npm run build",
     "build:frontend": "cd frontEnd && npm install && npm run build",
     "copy:build": "cp -r frontEnd/build ./build",
-    "vercel-build": "npm run build:backend && npm run build:frontend",
     "start": "npm run start:backend",
     "start:backend": "cd backEnd && npm start",
     "start:frontend": "cd frontEnd && npm start",
