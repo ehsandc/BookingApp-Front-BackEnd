@@ -4,8 +4,8 @@ import PropertyCard from "../components/PropertyCard";
 import SearchFilter from "../components/SearchFilter";
 import Footer from "../components/Footer";
 import LoadingSpinner from "../components/LoadingSpinner";
-import API_BASE_URL from "../config/api";
-// import { mockProperties } from "../data/mockProperties";
+// import API_BASE_URL from "../config/api";
+import { mockProperties } from "../data/mockProperties";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -21,24 +21,10 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProperties = async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/properties`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setProperties(data);
-        setFilteredProperties(data);
-      } catch (error) {
-        console.error("Error loading properties:", error);
-        setProperties([]);
-        setFilteredProperties([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProperties();
+    // Use mock data for frontend-only deployment
+    setProperties(mockProperties);
+    setFilteredProperties(mockProperties);
+    setLoading(false);
   }, []);
 
   // Reset search and filters when navigating to home
